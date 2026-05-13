@@ -1,5 +1,5 @@
 # Comunicación entre Microservicios — OpenFeign + Eureka
-### Opción A — Comunicación Síncrona | Spring Boot 3.3.x | Java 17 | Maven
+### Opción A — Comunicación Síncrona | Spring Boot 3.5.14 | Java 17 | Maven
 
 ---
 
@@ -48,41 +48,6 @@ Esto contrasta con la comunicación **asíncrona** (RabbitMQ, Kafka), donde el s
 
 ---
 
-## Estructura de archivos
-
-```
-eureka-server/
-└── src/main/
-    ├── java/com/demo/eurekaserver/
-    │   └── EurekaServerApplication.java
-    └── resources/
-        └── application.properties
-
-microservicio-usuarios/
-└── src/main/
-    ├── java/com/demo/microserviciousuarios/
-    │   ├── controller/UsuarioController.java
-    │   ├── service/UsuarioService.java
-    │   ├── model/Usuario.java
-    │   └── MicroservicioUsuariosApplication.java
-    └── resources/
-        └── application.properties
-
-microservicio-pedidos/
-└── src/main/
-    ├── java/com/demo/microserviciopedidos/
-    │   ├── controller/PedidoController.java
-    │   ├── service/PedidoService.java
-    │   ├── model/Pedido.java
-    │   ├── model/Usuario.java
-    │   ├── client/UsuarioClient.java
-    │   └── MicroservicioPedidosApplication.java
-    └── resources/
-        └── application.properties
-```
-
----
-
 ## Cómo correr el proyecto
 
 ### Requisitos previos
@@ -109,7 +74,7 @@ cd microservicio-pedidos
 mvn spring-boot:run
 ```
 
-> ⚠️ El orden importa. Siempre primero Eureka, luego los microservicios.
+>  El orden importa. Siempre primero Eureka, luego los microservicios.
 
 ---
 
@@ -169,31 +134,15 @@ Respuesta:
 
 | Tecnología | Versión | Uso |
 |---|---|---|
-| Spring Boot | 3.3.x | Framework base |
-| Spring Cloud OpenFeign | 2023.0.x | Comunicación entre servicios |
-| Spring Cloud Netflix Eureka | 2023.0.x | Registro y descubrimiento |
+| Spring Boot | 3.5.14 | Framework base |
+| Spring Cloud OpenFeign | Comunicación entre servicios |
+| Spring Cloud Netflix Eureka | Registro y descubrimiento |
 | Java | 17 | Lenguaje |
-| Maven | 3.x | Gestión de dependencias |
+| Maven | Gestión de dependencias |
 
 ---
 
-## Qué cumple del deber
-
-| Requisito | Cumplido |
-|---|---|
-| Spring Boot | ✅ |
-| Maven | ✅ |
-| Controller en ambos microservicios | ✅ |
-| Service en ambos microservicios | ✅ |
-| `application.properties` configurado | ✅ |
-| 2 microservicios que se comunican | ✅ |
-| Comunicación síncrona con OpenFeign | ✅ |
-| Descubrimiento de servicios con Eureka | ✅ |
-| Evidencias de funcionamiento | ✅ |
-
----
-
-## Comprensión del escenario — Observación del profesor
+## Comprensión del escenario 
 
 **¿Cómo se comunican los microservicios aquí?**
 El microservicio de pedidos no tiene la URL de usuarios escrita en el código. En cambio, usa OpenFeign con el nombre del servicio (`microservicio-usuarios`), y Eureka resuelve automáticamente en qué puerto está corriendo. Esto permite que la arquitectura sea flexible y escalable.
@@ -203,9 +152,3 @@ En este escenario, pedidos necesita los datos del usuario **en el mismo momento*
 
 **¿Cuándo usarías asíncrona?**
 Si el escenario fuera: "cuando se crea un pedido, notificar al usuario por email", ahí no necesitas esperar — puedes enviar el mensaje a una cola (RabbitMQ o Kafka) y el servicio de notificaciones lo procesa cuando pueda.
-
----
-
-## Autor
-Trabajo práctico — Comunicación entre Microservicios en Spring Boot  
-Materia: Arquitectura de Microservicios
