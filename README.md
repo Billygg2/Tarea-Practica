@@ -132,12 +132,12 @@ Respuesta:
 
 ## Tecnologías utilizadas
 
-| Tecnología | Versión | Uso |
-|---|---|---|
-| Spring Boot | 3.5.14 | Framework base |
+| Tecnología | Uso |
+|---|---|
+| Spring Boot | Framework base |
 | Spring Cloud OpenFeign | Comunicación entre servicios |
 | Spring Cloud Netflix Eureka | Registro y descubrimiento |
-| Java | 17 | Lenguaje |
+| Java Lenguaje |
 | Maven | Gestión de dependencias |
 
 ---
